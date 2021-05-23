@@ -12,8 +12,9 @@ import java.awt.event.WindowEvent;
 public class TankFrame extends Frame {
     int x = 200;
     int y = 200;
+
     public TankFrame() throws HeadlessException {
-        setSize(800,600);
+        setSize(800, 600);
         setResizable(false);
         setTitle("TAnk War");
         setVisible(true);
@@ -31,16 +32,20 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         System.out.println("paint");
-        g.fillRect(x+=10,y+=10,50,50);
+        g.fillRect(x, y, 50, 50);
+        x+=1;
+//        y+=10;
     }
 
     /**
      * 自定义键盘监听内部类
      */
-    class MyKeyListener extends KeyAdapter{
+    class MyKeyListener extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
             System.out.println("keyPressed");
+            x+=10;
+            repaint();
         }
 
         @Override

@@ -8,7 +8,7 @@ import java.awt.event.WindowEvent;
  * Created by Skyrim on 2021/5/22 14:10
  */
 public class T {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        Frame frame = new Frame();
 //        frame.setSize(800,600);
 //        frame.setResizable(false);
@@ -23,5 +23,9 @@ public class T {
 
 
         TankFrame frame = new TankFrame();
+        while (true){
+            Thread.sleep(50);
+            frame.repaint();
+        }
     }
 }
