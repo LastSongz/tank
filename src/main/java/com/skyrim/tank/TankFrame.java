@@ -12,6 +12,8 @@ import java.awt.event.WindowEvent;
 public class TankFrame extends Frame {
     int x = 200;
     int y = 200;
+    Direct dir = Direct.UP;
+    private final int SPEED = 10;
 
     public TankFrame() throws HeadlessException {
         setSize(800, 600);
@@ -33,7 +35,22 @@ public class TankFrame extends Frame {
     public void paint(Graphics g) {
         System.out.println("paint");
         g.fillRect(x, y, 50, 50);
-        x += 1;
+        switch (dir) {
+            case UP:
+                y -= SPEED;
+                break;
+            case DOWN:
+                y += SPEED;
+                break;
+            case LEFT:
+                x -= SPEED;
+                break;
+            case RIGHT:
+                x += SPEED;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + dir);
+        }
 //        y+=10;
     }
 
@@ -49,7 +66,7 @@ public class TankFrame extends Frame {
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
-            switch (key){
+            switch (key) {
                 case KeyEvent.VK_UP:
                     bu = true;
                     break;
@@ -65,6 +82,7 @@ public class TankFrame extends Frame {
                 default:
                     throw new IllegalStateException("Unexpected value: " + key);
             }
+            setTankDir();
 //            System.out.println("keyPressed");
 //            x+=10;
 //            repaint();
@@ -73,7 +91,7 @@ public class TankFrame extends Frame {
         @Override
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
-            switch (key){
+            switch (key) {
                 case KeyEvent.VK_UP:
                     bu = false;
                     break;
@@ -89,6 +107,24 @@ public class TankFrame extends Frame {
                 default:
                     throw new IllegalStateException("Unexpected value: " + key);
             }
+            setTankDir();
+        }
+
+        private void setTankDir() {
+            if (bu) {
+                dir = Direct.UP;
+            }
+
+            if (bd) {
+                dir = Direct.DOWN;
+            }
+            if (bl) {
+                dir = Direct.LEFT;
+            }
+            if (br) {
+                dir = Direct.RIGHT;
+            }
+
         }
     }
 }
