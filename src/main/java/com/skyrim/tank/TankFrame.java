@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
 public class TankFrame extends Frame {
     int x = 200;
     int y = 200;
-    Direct dir = Direct.UP;
+    Direct dir = null;
     private final int SPEED = 10;
 
     public TankFrame() throws HeadlessException {
@@ -108,13 +108,13 @@ public class TankFrame extends Frame {
                     throw new IllegalStateException("Unexpected value: " + key);
             }
             setTankDir();
+            stopTank();
         }
 
         private void setTankDir() {
             if (bu) {
                 dir = Direct.UP;
             }
-
             if (bd) {
                 dir = Direct.DOWN;
             }
@@ -125,6 +125,10 @@ public class TankFrame extends Frame {
                 dir = Direct.RIGHT;
             }
 
+        }
+
+        private void stopTank(){
+            dir = null;
         }
     }
 }
