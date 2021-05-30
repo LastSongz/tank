@@ -10,10 +10,11 @@ import java.awt.event.WindowEvent;
  * Created by Skyrim on 2021/5/23 10:29
  */
 public class TankFrame extends Frame {
-    int x = 200;
-    int y = 200;
-    Direct dir = null;
-    private final int SPEED = 10;
+//    int x = 200;
+//    int y = 200;
+//    Direct dir = null;
+//    private final int SPEED = 10;
+    Tank tank = new Tank(200,200,null,10);
 
     public TankFrame() throws HeadlessException {
         setSize(800, 600);
@@ -34,23 +35,8 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         System.out.println("paint");
-        g.fillRect(x, y, 50, 50);
-        switch (dir) {
-            case UP:
-                y -= SPEED;
-                break;
-            case DOWN:
-                y += SPEED;
-                break;
-            case LEFT:
-                x -= SPEED;
-                break;
-            case RIGHT:
-                x += SPEED;
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + dir);
-        }
+        tank.paint(g);
+
 //        y+=10;
     }
 
@@ -113,22 +99,22 @@ public class TankFrame extends Frame {
 
         private void setTankDir() {
             if (bu) {
-                dir = Direct.UP;
+                tank.setDir(Direct.UP);
             }
             if (bd) {
-                dir = Direct.DOWN;
+                tank.setDir(Direct.DOWN);
             }
             if (bl) {
-                dir = Direct.LEFT;
+                tank.setDir(Direct.LEFT);
             }
             if (br) {
-                dir = Direct.RIGHT;
+                tank.setDir(Direct.RIGHT);
             }
 
         }
 
         private void stopTank(){
-            dir = null;
+            tank.setDir(null);
         }
     }
 }
