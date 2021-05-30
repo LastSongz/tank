@@ -15,7 +15,7 @@ public class TankFrame extends Frame {
 //    Direct dir = null;
 //    private final int SPEED = 10;
     static final int GAME_HEIGHT = 600, GAME_WEIGHT = 800;
-    Tank tank = new Tank(200, 200, 50, 50, Direct.UP, 10);
+    Tank tank = new Tank(200, 200, 50, 50, Direct.UP, 10,this);
     Bullet bullet = new Bullet(225, 225, tank.getDir());
 
     public TankFrame() throws HeadlessException {
@@ -82,6 +82,9 @@ public class TankFrame extends Frame {
                 case KeyEvent.VK_RIGHT:
                     br = true;
                     break;
+                case KeyEvent.VK_ESCAPE:
+                    System.exit(0);
+                    break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + key);
             }
@@ -106,6 +109,9 @@ public class TankFrame extends Frame {
                     break;
                 case KeyEvent.VK_RIGHT:
                     br = false;
+                    break;
+                case KeyEvent.VK_CONTROL:
+                    tank.fire();
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + key);

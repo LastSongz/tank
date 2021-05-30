@@ -11,15 +11,16 @@ public class Tank {
     private Direct dir = null;
     private int SPEED;
     private Boolean moving = false;
+    private TankFrame tf;
 
-
-    public Tank(int x, int y, int WIDTH, int HEIGHT, Direct dir, int SPEED) {
+    public Tank(int x, int y, int WIDTH, int HEIGHT, Direct dir, int SPEED,TankFrame tf) {
         this.x = x;
         this.y = y;
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
         this.dir = dir;
         this.SPEED = SPEED;
+        this.tf = tf;
     }
 
     public int getX() {
@@ -90,5 +91,9 @@ public class Tank {
             default:
                 throw new IllegalStateException("Unexpected value: " + dir);
         }
+    }
+
+    public void fire() {
+        tf.bullet = new Bullet((this.x + this.WIDTH / 2), (this.y + this.HEIGHT / 2), this.dir);
     }
 }
