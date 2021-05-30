@@ -94,10 +94,15 @@ public class TankFrame extends Frame {
                     throw new IllegalStateException("Unexpected value: " + key);
             }
             setTankDir();
-            stopTank();
+//            stopTank();
         }
 
         private void setTankDir() {
+            if (!bu&&!bd&&!bl&&!br){
+                tank.setMoving(false);
+            }else {
+                tank.setMoving(true);
+            }
             if (bu) {
                 tank.setDir(Direct.UP);
             }
@@ -113,8 +118,9 @@ public class TankFrame extends Frame {
 
         }
 
-        private void stopTank(){
-            tank.setDir(null);
-        }
+//        坦克停止初版
+//        private void stopTank(){
+//            tank.setDir(null);
+//        }
     }
 }

@@ -9,6 +9,7 @@ public class Tank {
     private int x, y;
     private Direct dir = null;
     private int SPEED;
+    private Boolean moving= false;
 
     public Tank(int x, int y, Direct dir, int SPEED) {
         this.x = x;
@@ -49,8 +50,23 @@ public class Tank {
         this.SPEED = SPEED;
     }
 
+    public Boolean getMoving() {
+        return moving;
+    }
+
+    public void setMoving(Boolean moving) {
+        this.moving = moving;
+    }
+
     public void paint(Graphics g) {
         g.fillRect(x, y, 50, 50);
+        move();
+    }
+
+    public void move(){
+        if (!moving){
+            return;
+        }
         switch (dir) {
             case UP:
                 y -= SPEED;
