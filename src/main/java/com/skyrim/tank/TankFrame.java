@@ -10,12 +10,12 @@ import java.awt.event.WindowEvent;
  * Created by Skyrim on 2021/5/23 10:29
  */
 public class TankFrame extends Frame {
-//    int x = 200;
+    //    int x = 200;
 //    int y = 200;
 //    Direct dir = null;
 //    private final int SPEED = 10;
-    Tank tank = new Tank(200,200,null,10);
-
+    Tank tank = new Tank(200, 200, 50, 50, Direct.UP, 10);
+    Bullet bullet = new Bullet(225,225,tank.getDir());
     public TankFrame() throws HeadlessException {
         setSize(800, 600);
         setResizable(false);
@@ -36,7 +36,7 @@ public class TankFrame extends Frame {
     public void paint(Graphics g) {
         System.out.println("paint");
         tank.paint(g);
-
+        bullet.paint(g);
 //        y+=10;
     }
 
@@ -98,9 +98,9 @@ public class TankFrame extends Frame {
         }
 
         private void setTankDir() {
-            if (!bu&&!bd&&!bl&&!br){
+            if (!bu && !bd && !bl && !br) {
                 tank.setMoving(false);
-            }else {
+            } else {
                 tank.setMoving(true);
             }
             if (bu) {

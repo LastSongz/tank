@@ -7,13 +7,17 @@ import java.awt.*;
  */
 public class Tank {
     private int x, y;
+    private int WIDTH, HEIGHT;
     private Direct dir = null;
     private int SPEED;
-    private Boolean moving= false;
+    private Boolean moving = false;
 
-    public Tank(int x, int y, Direct dir, int SPEED) {
+
+    public Tank(int x, int y, int WIDTH, int HEIGHT, Direct dir, int SPEED) {
         this.x = x;
         this.y = y;
+        this.WIDTH = WIDTH;
+        this.HEIGHT = HEIGHT;
         this.dir = dir;
         this.SPEED = SPEED;
     }
@@ -59,12 +63,12 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
-        g.fillRect(x, y, 50, 50);
+        g.fillRect(x, y, WIDTH, HEIGHT);
         move();
     }
 
-    public void move(){
-        if (!moving){
+    public void move() {
+        if (!moving) {
             return;
         }
         switch (dir) {
