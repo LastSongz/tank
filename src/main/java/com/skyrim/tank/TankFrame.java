@@ -14,10 +14,12 @@ public class TankFrame extends Frame {
 //    int y = 200;
 //    Direct dir = null;
 //    private final int SPEED = 10;
+    static final int GAME_HEIGHT = 600, GAME_WEIGHT = 800;
     Tank tank = new Tank(200, 200, 50, 50, Direct.UP, 10);
-    Bullet bullet = new Bullet(225,225,tank.getDir());
+    Bullet bullet = new Bullet(225, 225, tank.getDir());
+
     public TankFrame() throws HeadlessException {
-        setSize(800, 600);
+        setSize(GAME_WEIGHT, GAME_HEIGHT);
         setResizable(false);
         setTitle("TAnk War");
         setVisible(true);
@@ -30,6 +32,21 @@ public class TankFrame extends Frame {
                 System.exit(0);
             }
         });
+    }
+
+    Image offScreenImage = null;
+    @Override
+    public void update(Graphics g) {
+        if (offScreenImage == null){
+            offScreenImage = this.createImage(GAME_WEIGHT,GAME_HEIGHT);
+        }
+        Graphics offScreenG = offScreenImage.getGraphics();
+        Color screenGColor = offScreenG.getColor();
+        offScreenG.setColor(Color.BLACK);
+        offScreenG.fillRect(0,0,GAME_WEIGHT,GAME_HEIGHT);
+        offScreenG.setColor(screenGColor);
+        paint(offScreenG);
+        g.drawImage(offScreenImage,0,0,null);
     }
 
     @Override

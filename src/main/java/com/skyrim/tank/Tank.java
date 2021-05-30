@@ -63,7 +63,10 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
+        Color color = g.getColor();
+        g.setColor(Color.cyan);
         g.fillRect(x, y, WIDTH, HEIGHT);
+        g.setColor(color);
         move();
     }
 
