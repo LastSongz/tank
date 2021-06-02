@@ -94,6 +94,6 @@ public class Tank {
     }
 
     public void fire() {
-        tf.bullet = new Bullet((this.x + this.WIDTH / 2), (this.y + this.HEIGHT / 2), this.dir);
+        tf.bullets.add(new Bullet((this.x + this.WIDTH / 2), (this.y + this.HEIGHT / 2), this.dir,this.tf));
     }
 }
