@@ -9,7 +9,7 @@ public class Bullet {
     private Integer x, y;
     private Direct dir;
     private static Integer WIDTH = 10, HEIGHT = 10;
-    private static final Integer SPEED = 5;
+    private static final Integer SPEED = 15;
     private Boolean live = true;
     private TankFrame tf = null;
 
@@ -51,5 +51,9 @@ public class Bullet {
         if (x < 0 || y < 0 || x > TankFrame.GAME_WEIDTH || y > TankFrame.GAME_HEIGHT) {
             live = false;
         }
+    }
+
+    public Boolean getLive() {
+        return live;
     }
 }
