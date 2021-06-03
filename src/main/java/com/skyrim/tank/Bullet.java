@@ -1,6 +1,7 @@
 package com.skyrim.tank;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by Skyrim on 2021/5/30 12:08
@@ -8,7 +9,8 @@ import java.awt.*;
 public class Bullet {
     private Integer x, y;
     private Direct dir;
-    private static Integer WIDTH = 10, HEIGHT = 10;
+    private static BufferedImage ImageDir = ResourcesMgr.bulletU;
+    public static int WIDTH = ImageDir.getWidth(), HEIGHT = ImageDir.getHeight();
     private static final Integer SPEED = 15;
     private Boolean live = true;
     private TankFrame tf = null;
@@ -21,8 +23,8 @@ public class Bullet {
     }
 
     public void paint(Graphics g) {
-        if (!live){
-            tf.bullets.remove(this );
+        if (!live) {
+            tf.bullets.remove(this);
         }
 //        Color color = g.getColor();
 //        g.setColor(Color.red);
@@ -30,20 +32,22 @@ public class Bullet {
 //        g.setColor(color);
         switch (dir) {
             case UP:
-                g.drawImage(ResourcesMgr.bulletU,x,y,null);
+                ImageDir = ResourcesMgr.bulletU;
                 break;
             case DOWN:
-                g.drawImage(ResourcesMgr.bulletD,x,y,null);
+                ImageDir = ResourcesMgr.bulletD;
                 break;
             case LEFT:
-                g.drawImage(ResourcesMgr.bulletL,x,y,null);
+                ImageDir = ResourcesMgr.bulletL;
                 break;
             case RIGHT:
-                g.drawImage(ResourcesMgr.bulletR,x,y,null);
+                ImageDir = ResourcesMgr.bulletR;
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + dir);
         }
+        g.drawImage(ImageDir, x, y, null);
+
         move();
     }
 

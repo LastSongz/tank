@@ -1,23 +1,23 @@
 package com.skyrim.tank;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by Skyrim on 2021/5/24 21:59
  */
 public class Tank {
     private int x, y;
-    private int WIDTH, HEIGHT;
+    private static BufferedImage ImageDir = ResourcesMgr.tankU;
+    public static int WIDTH = ImageDir.getWidth(), HEIGHT = ImageDir.getHeight();
     private Direct dir = Direct.UP;
     private int SPEED;
     private Boolean moving = false;
     private TankFrame tf;
 
-    public Tank(int x, int y, int WIDTH, int HEIGHT, Direct dir, int SPEED,TankFrame tf) {
+    public Tank(int x, int y, Direct dir, int SPEED, TankFrame tf) {
         this.x = x;
         this.y = y;
-        this.WIDTH = WIDTH;
-        this.HEIGHT = HEIGHT;
         this.dir = dir;
         this.SPEED = SPEED;
         this.tf = tf;
@@ -70,20 +70,21 @@ public class Tank {
 //        g.setColor(color);
         switch (dir) {
             case UP:
-                g.drawImage(ResourcesMgr.tankU,x,y,null);
+                ImageDir = ResourcesMgr.tankU;
                 break;
             case DOWN:
-                g.drawImage(ResourcesMgr.tankD,x,y,null);
+                ImageDir = ResourcesMgr.tankD;
                 break;
             case LEFT:
-                g.drawImage(ResourcesMgr.tankL,x,y,null);
+                ImageDir = ResourcesMgr.tankL;
                 break;
             case RIGHT:
-                g.drawImage(ResourcesMgr.tankR,x,y,null);
+                ImageDir = ResourcesMgr.tankR;
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + dir);
         }
+        g.drawImage(ImageDir, x, y, null);
         move(g);
     }
 
@@ -110,6 +111,8 @@ public class Tank {
     }
 
     public void fire() {
-        tf.bullets.add(new Bullet((this.x + this.WIDTH / 2), (this.y + this.HEIGHT / 2), this.dir,this.tf));
+        int bx = this.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
+        int by = this.y + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;
+        tf.bullets.add(new Bullet(bx, by, this.dir, this.tf));
     }
 }

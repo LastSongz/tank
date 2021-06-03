@@ -19,7 +19,7 @@ public class TankFrame extends Frame {
 //    private final int SPEED = 10;
     static final int GAME_HEIGHT = 600, GAME_WEIDTH = 800;
     List<Bullet> bullets = new ArrayList<>();
-    Tank tank = new Tank(200, 200, 50, 50, Direct.UP, 10,this);
+    Tank tank = new Tank(200, 200, Direct.UP, 10,this);
 
     public TankFrame() throws HeadlessException {
         setSize(GAME_WEIDTH, GAME_HEIGHT);
