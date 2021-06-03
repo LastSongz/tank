@@ -8,7 +8,7 @@ import java.awt.*;
 public class Tank {
     private int x, y;
     private int WIDTH, HEIGHT;
-    private Direct dir = null;
+    private Direct dir = Direct.UP;
     private int SPEED;
     private Boolean moving = false;
     private TankFrame tf;
@@ -64,14 +64,30 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
-        Color color = g.getColor();
-        g.setColor(Color.cyan);
-        g.fillRect(x, y, WIDTH, HEIGHT);
-        g.setColor(color);
-        move();
+//        Color color = g.getColor();
+//        g.setColor(Color.cyan);
+//        g.fillRect(x, y, WIDTH, HEIGHT);
+//        g.setColor(color);
+        switch (dir) {
+            case UP:
+                g.drawImage(ResourcesMgr.tankU,x,y,null);
+                break;
+            case DOWN:
+                g.drawImage(ResourcesMgr.tankD,x,y,null);
+                break;
+            case LEFT:
+                g.drawImage(ResourcesMgr.tankL,x,y,null);
+                break;
+            case RIGHT:
+                g.drawImage(ResourcesMgr.tankR,x,y,null);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + dir);
+        }
+        move(g);
     }
 
-    public void move() {
+    public void move(Graphics g) {
         if (!moving) {
             return;
         }

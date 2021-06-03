@@ -17,8 +17,11 @@ public class imageTest {
     @Test
     public void test(){
         try {
-            BufferedImage image = ImageIO.read(new File("C:\\Users\\KaiXuan\\Desktop\\learning\\tank\\src\\仰卧起坐鸭.jpg"));
+            BufferedImage image = ImageIO.read(new File("C:\\Users\\KaiXuan\\Desktop\\learning\\tank\\src\\images\\仰卧起坐鸭.jpg"));
             assertNotNull(image);
+
+            BufferedImage image2 = ImageIO.read(imageTest.class.getClassLoader().getResourceAsStream("仰卧起坐鸭.jpg"));
+            assertNotNull(image2);
         } catch (IOException e) {
             e.printStackTrace();
         }
