@@ -14,6 +14,7 @@ public class Tank {
     private int SPEED;
     private Boolean moving = false;
     private TankFrame tf;
+    private Boolean living = true;
 
     public Tank(int x, int y, Direct dir, int SPEED, TankFrame tf) {
         this.x = x;
@@ -64,6 +65,9 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
+        if (!living) {
+            tf.enemies.remove(this);
+        }
 //        Color color = g.getColor();
 //        g.setColor(Color.cyan);
 //        g.fillRect(x, y, WIDTH, HEIGHT);
@@ -114,5 +118,11 @@ public class Tank {
         int bx = this.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
         int by = this.y + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;
         tf.bullets.add(new Bullet(bx, by, this.dir, this.tf));
+    }
+    public Boolean getLiving() {
+        return living;
+    }
+    public void die() {
+        this.living = false;
     }
 }

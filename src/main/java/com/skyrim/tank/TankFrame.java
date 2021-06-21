@@ -59,6 +59,7 @@ public class TankFrame extends Frame {
         Color gColor = g.getColor();
         g.setColor(Color.cyan);
         g.drawString("子弹的数量:"+bullets.size(),10,60);
+        g.drawString("敌人的数量:"+enemies.size(),10,80);
         g.setColor(gColor);
 
 
@@ -67,7 +68,12 @@ public class TankFrame extends Frame {
             bullets.get(i).paint(g);
         }
         for (int i = 0; i < enemies.size(); i++) {
-            enemies.get(i).paint(g`);
+            enemies.get(i).paint(g);
+        }
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < enemies.size(); j++) {
+                bullets.get(i).collodeWith(enemies.get(j));
+            }
         }
 
         //迭代器方式删除子弹

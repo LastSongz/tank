@@ -12,7 +12,7 @@ public class Bullet {
     private static BufferedImage ImageDir = ResourcesMgr.bulletU;
     public static int WIDTH = ImageDir.getWidth(), HEIGHT = ImageDir.getHeight();
     private static final Integer SPEED = 15;
-    private Boolean live = true;
+    private Boolean living = true;
     private TankFrame tf = null;
 
     public Bullet(Integer x, Integer y, Direct dir, TankFrame tf) {
@@ -23,7 +23,7 @@ public class Bullet {
     }
 
     public void paint(Graphics g) {
-        if (!live) {
+        if (!living) {
             tf.bullets.remove(this);
         }
 //        Color color = g.getColor();
@@ -69,11 +69,27 @@ public class Bullet {
                 throw new IllegalStateException("Unexpected value: " + dir);
         }
         if (x < 0 || y < 0 || x > TankFrame.GAME_WEIDTH || y > TankFrame.GAME_HEIGHT) {
-            live = false;
+            living = false;
         }
     }
 
-    public Boolean getLive() {
-        return live;
+    public Boolean getLiving() {
+        return living;
     }
+
+    private void die() {
+        this.living = false;
+    }
+
+    public void collodeWith(Tank tank) {
+        Rectangle bullet = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
+        Rectangle t = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);
+        if (bullet.intersects(t)){
+            tank.die();
+            this.die();
+        }
+
+    }
+
+
 }
