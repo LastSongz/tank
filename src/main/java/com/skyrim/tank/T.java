@@ -23,7 +23,12 @@ public class T {
 
 
         TankFrame frame = new TankFrame();
-        while (true){
+
+        for (int i = 0; i < 5; i++) {
+            frame.enemies.add(new Tank(200, 200 + i * 60, Direct.DOWN, 50, frame));
+        }
+
+        while (true) {
             Thread.sleep(50);
             frame.repaint();
         }

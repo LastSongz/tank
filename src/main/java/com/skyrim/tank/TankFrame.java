@@ -19,7 +19,8 @@ public class TankFrame extends Frame {
 //    private final int SPEED = 10;
     static final int GAME_HEIGHT = 600, GAME_WEIDTH = 800;
     List<Bullet> bullets = new ArrayList<>();
-    Tank tank = new Tank(200, 200, Direct.UP, 10,this);
+    Tank tank = new Tank(400, 600, Direct.UP, 10,this);
+    List<Tank> enemies = new ArrayList<>();
 
     public TankFrame() throws HeadlessException {
         setSize(GAME_WEIDTH, GAME_HEIGHT);
@@ -64,6 +65,9 @@ public class TankFrame extends Frame {
         tank.paint(g);
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
+        }
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).paint(g`);
         }
 
         //迭代器方式删除子弹
